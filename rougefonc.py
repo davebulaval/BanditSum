@@ -9,14 +9,14 @@ rouge = Rouge()
 
 
 def RougeTest_rouge(ref, hyp, rouge_metric="all", max_num_of_bytes=-1):
-    ref = [_.decode('ascii', 'ignore').encode('utf-8').lower() for _ in ref]
-    hyp = [_.decode('ascii', 'ignore').encode('utf-8').lower() for _ in hyp]
+    ref = [_.lower() for _ in ref]
+    hyp = [_.lower() for _ in hyp]
 
     if max_num_of_bytes > 0:
         ref = cutwords(ref)
         hyp = cutwords(hyp)
 
-    rouge_score = rouge.get_scores([hyp], [ref])
+    rouge_score = rouge.get_scores(hyp, ref)
     if rouge_metric[1] == 'f':
         return rouge_score[0]['rouge-%s' % rouge_metric[0]]['f']
     elif rouge_metric[1] == 'r':
@@ -33,6 +33,7 @@ def RougeTest_rouge(ref, hyp, rouge_metric="all", max_num_of_bytes=-1):
 
 home_path = os.path.expanduser('~')
 
+
 def RougeTest_pyrouge(ref, hyp, id=0, rouge_metric='all', compute_score=True,
                       path='./result', max_num_of_bytes=-1):
     # initialization
@@ -40,7 +41,6 @@ def RougeTest_pyrouge(ref, hyp, id=0, rouge_metric='all', compute_score=True,
         os.mkdir('./result')
     if not os.path.exists(path):
         os.mkdir(path)
-
     # write new ref and hyp
     with codecs.open(os.path.join(path, 'ref.' + str(id) + '.txt'), 'w', encoding="UTF-8") as f:
         f.write(Rouge155.convert_text_to_rouge_format('\n'.join(ref).decode('UTF-8', 'ignore')))
@@ -107,7 +107,6 @@ def from_summary_index_compute_rouge(doc, summary_index, std_rouge=False, rouge_
     # greedy approach directly use this
 
     hyp, ref = from_summary_index_generate_hyp_ref(doc, summary_index)
-
     if len(hyp) == 0 or len(ref) == 0:
         return 0.
 
