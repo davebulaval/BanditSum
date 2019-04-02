@@ -10,7 +10,6 @@ PAD_ID = 0
 UNK_ID = 1
 wordembed_size = 200
 
-
 human_eval_set = [
     '00180b7ce54794a52766d795506a94071f7c055b',
     '00a51d5454f2ef7dbf4c53471223a27fb9c20681',
@@ -189,7 +188,7 @@ class PickleReader():
         # chunked_dir = self.base_dir + "chunked/"
         chunked_dir = os.path.join(self.base_dir, 'chunked')
         os_list = os.listdir(chunked_dir)
-        if data_quota == -1: #none-quota randomize data
+        if data_quota == -1:  # none-quota randomize data
             random.seed()
             random.shuffle(os_list)
 
@@ -255,7 +254,7 @@ class PickleReader():
 
         testset = []
         for k in gold_dict.keys():
-        # for k in human_eval_set:
+            # for k in human_eval_set:
             testset.append(Document(news_dict[k], gold_dict[k]))
 
         return [Dataset(testset)]
@@ -298,13 +297,15 @@ def main():
         url_hashes = get_url_hashes(url_list)
         url = zip(url_list, url_hashes)
         story_fnames = ["/home/hmwv1114/workdisk/workspace/cnn_dm_stories/cnn_stories_tokenized/" + s + ".story"
-                        if u.find('cnn.com') >= 0 else "/home/hmwv1114/workdisk/workspace/cnn_dm_stories/dm_stories_tokenized/" + s + ".story"
+                        if u.find(
+            'cnn.com') >= 0 else "/home/hmwv1114/workdisk/workspace/cnn_dm_stories/dm_stories_tokenized/" + s + ".story"
                         for u, s in url]
 
         new_lines = []
         for i, filename in enumerate(story_fnames):
             if i % chunk_size == 0 and i > 0:
-                pickle.dump(Dataset(new_lines), open(out_file % (i / chunk_size), "wb"))
+                pickle.dump(Dataset(new_lines), open(out_file % (i / chunk_size), "wb"),
+                            protocol=pickle.HIGHEST_PROTOCOL)
                 new_lines = []
 
             try:
@@ -315,7 +316,8 @@ def main():
             new_lines.append(Document(art, abs))
 
         if new_lines != []:
-            pickle.dump(Dataset(new_lines), open(out_file % (i / chunk_size + 1), "wb"))
+            pickle.dump(Dataset(new_lines), open(out_file % (i / chunk_size + 1), "wb"),
+                        protocol=pickle.HIGHEST_PROTOCOL)
 
     train_urls = "../data/url_lists/all_train.txt"
     val_urls = "../data/url_lists/all_val.txt"
