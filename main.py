@@ -50,7 +50,7 @@ def extractive_training(args, vocab):
                            'ext'))
     print(model_name)
 
-    log_name = ".".join(("../log/model",
+    log_name = ".".join(("./log/model",
                          str(args.ext_model),
                          str(args.rouge_metric), str(args.std_rouge),
                          str(args.rl_baseline_method), "oracle_l", str(args.oracle_length),
@@ -104,7 +104,8 @@ def extractive_training(args, vocab):
     # print("current log file: %s"%log_name)
 
     logging.basicConfig(filename='%s.log' % log_name,
-                        level=logging.INFO, format='%(asctime)s [INFO] %(message)s')
+                        level=logging.INFO, format='%(asctime)s [INFO] %(message)s',
+                        filemode="w")
     if args.load_ext:
         print("loading existing model%s" % model_name)
         extract_net = torch.load(model_name, map_location=lambda storage, loc: storage)
@@ -122,7 +123,7 @@ def extractive_training(args, vocab):
         train_iter = data_loader.chunked_data_reader("train", data_quota=args.train_example_quota)
         step_in_epoch = 0
         for dataset in train_iter:
-            for step, docs in enumerate(BatchDataLoader(dataset, shuffle=True)):
+            for step, docs in enumerate(BatchDataLoader(dataset, shuffle=True, batch_size=args.batch_size)):
                 try:
                     extract_net.train()
                     # if True:
@@ -234,7 +235,7 @@ def main():
     print('generate config')
     with open(args.vocab_file, "rb") as f:
         vocab = pickle.load(f)
-    print(vocab)
+    # print(vocab)
 
     extract_net = extractive_training(args, vocab)
 
