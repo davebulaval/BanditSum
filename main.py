@@ -50,7 +50,7 @@ def extractive_training(args, vocab):
                            'ext'))
     print(model_name)
 
-    log_name = ".".join(("../log/model",
+    log_name = ".".join(("./log/model",
                          str(args.ext_model),
                          str(args.rouge_metric), str(args.std_rouge),
                          str(args.rl_baseline_method), "oracle_l", str(args.oracle_length),
@@ -167,7 +167,8 @@ def extractive_training(args, vocab):
                     # print('Epoch %d Step %d Reward %.4f'%(epoch,step_in_epoch,reward))
                     logging.info('Epoch %d Step %d Reward %.4f' % (epoch, step_in_epoch, reward))
                 except Exception as e:
-                    print(e)
+                    continue
+                    # print(e) #print ici
 
                 if (step_in_epoch) % n_step == 0 and step_in_epoch != 0:
                     print('Epoch ' + str(epoch) + ' Step ' + str(step_in_epoch) +
@@ -233,7 +234,7 @@ def main():
 
     print('generate config')
     with open(args.vocab_file, "rb") as f:
-        vocab = pickle.load(f)
+        vocab = pickle.load(f, encoding='bytes')
     print(vocab)
 
     extract_net = extractive_training(args, vocab)

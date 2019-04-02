@@ -54,7 +54,8 @@ def extractive_labeling_full_dataset(dataset):
         print("processed %d data out of %d" % (i, data_size))
     # store
     with open("test_ext_labels.pkl", 'wb') as f:
-        pkl.dump(ext_labels, f)
+        pkl.dump(ext_labels, f,
+                 protocol=pkl.HIGHEST_PROTOCOL)
     return ext_labels
 
 

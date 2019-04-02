@@ -1,5 +1,4 @@
 # coding:utf8
-
 import random
 from collections import namedtuple
 from copy import deepcopy
