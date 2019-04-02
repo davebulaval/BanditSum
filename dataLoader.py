@@ -37,7 +37,7 @@ human_eval_set = [
 def hashhex(s):
     """Returns a heximal formated SHA1 hash of the input string."""
     h = hashlib.sha1()
-    h.update(s)
+    h.update(s.encode('utf-8'))
     return h.hexdigest()
 
 
@@ -101,13 +101,13 @@ class Vocab():
         self.embedding = None
 
     def __getitem__(self, key):
-        if self.w2i.has_key(key):
+        try:
             return self.w2i[key]
-        else:
+        except KeyError:
             return self.w2i['<unk>']
 
     def add_vocab(self, vocab_file="../data/finished_files/vocab"):
-        with open(vocab_file, "rb") as f:
+        with open(vocab_file, "r") as f:
             for line in f:
                 self.word_list.append(line.split()[0])  # only want the word, not the count
         print("read %d words from vocab file" % len(self.word_list))
@@ -168,7 +168,7 @@ class PickleReader():
         :return: data: Dataset objects (contain Document objects with doc.content and doc.summary)
         """
         with open(dataset_path, "rb") as f:
-            data = pickle.load(f)
+            data = pickle.load(f, encoding='bytes')
         return data
 
     def full_data_reader(self, dataset_type="train"):
@@ -186,7 +186,7 @@ class PickleReader():
         """
         data_counter = 0
         # chunked_dir = self.base_dir + "chunked/"
-        chunked_dir = os.path.join(self.base_dir, 'chunked')
+        chunked_dir = os.path.join(self.base_dir, 'pickled')
         os_list = os.listdir(chunked_dir)
         if data_quota == -1:  # none-quota randomize data
             random.seed()
@@ -311,7 +311,7 @@ def main():
             try:
                 art, abs = get_art_abs(filename)
             except:
-                print filename
+                print(filename)
                 continue
             new_lines.append(Document(art, abs))
 
@@ -323,9 +323,9 @@ def main():
     val_urls = "../data/url_lists/all_val.txt"
     test_urls = "../data/url_lists/all_test.txt"
 
-    write_to_pickle(test_urls, "../data/CNN_DM_pickle_data/chunked/test_%03d.bin.p", chunk_size=100000000)
-    write_to_pickle(val_urls, "../data/CNN_DM_pickle_data/chunked/val_%03d.bin.p", chunk_size=100000000)
-    write_to_pickle(train_urls, "../data/CNN_DM_pickle_data/chunked/train_%03d.bin.p")
+    write_to_pickle(test_urls, "../data/CNN_DM_pickle_data/pickled/test_%03d.bin.p", chunk_size=100000000)
+    write_to_pickle(val_urls, "../data/CNN_DM_pickle_data/pickled/val_%03d.bin.p", chunk_size=100000000)
+    write_to_pickle(train_urls, "../data/CNN_DM_pickle_data/pickled/train_%03d.bin.p")
 
 
 if __name__ == "__main__":
