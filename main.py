@@ -167,7 +167,8 @@ def extractive_training(args, vocab):
                     # print('Epoch %d Step %d Reward %.4f'%(epoch,step_in_epoch,reward))
                     logging.info('Epoch %d Step %d Reward %.4f' % (epoch, step_in_epoch, reward))
                 except Exception as e:
-                    print(e)
+                    continue
+                    # print(e) #print ici
 
                 if (step_in_epoch) % n_step == 0 and step_in_epoch != 0:
                     print('Epoch ' + str(epoch) + ' Step ' + str(step_in_epoch) +
@@ -233,7 +234,7 @@ def main():
 
     print('generate config')
     with open(args.vocab_file, "rb") as f:
-        vocab = pickle.load(f)
+        vocab = pickle.load(f, encoding='bytes')
     print(vocab)
 
     extract_net = extractive_training(args, vocab)
