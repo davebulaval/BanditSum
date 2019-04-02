@@ -50,7 +50,7 @@ def extractive_training(args, vocab):
                            'ext'))
     print(model_name)
 
-    log_name = ".".join(("../log/model",
+    log_name = ".".join(("./log/model",
                          str(args.ext_model),
                          str(args.rouge_metric), str(args.std_rouge),
                          str(args.rl_baseline_method), "oracle_l", str(args.oracle_length),
