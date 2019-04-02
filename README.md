@@ -1,7 +1,11 @@
 # BanditSum
-This repository contains the pre-processed data and code for our EMNLP 2018 paper "[BanditSum: Extractive Summarization as a Contextual Bandit](https://arxiv.org/abs/1809.09672)". Please contact me at yue.dong2@mail.mcgill.ca for any question.
+This repository contains the code for the EMNLP 2018 paper "[BanditSum: Extractive Summarization as a Contextual Bandit](https://arxiv.org/abs/1809.09672)". 
 
-Please cite this paper if you use our code or data.
+This implementation is python 3.7 fully fonctionnal and work fine with torch 1.0.
+
+For question about the paper you can contact one of the [author](yue.dong2@mail.mcgill.ca).
+
+Paper citation and code citation
 ```
 @inproceedings{dong2018banditsum,
   title={BanditSum: Extractive Summarization as a Contextual Bandit},
@@ -16,10 +20,10 @@ Please cite this paper if you use our code or data.
 Instructions to download our preprocessed CNN/DailyMail Dataset can be found here.
 https://github.com/JafferWilson/Process-Data-of-CNN-DailyMail
 
-## Our Test Output:
+## The Test Output:
 https://drive.google.com/file/d/1tMiWuRzvDfHGwDILDXT2WFpyFcuHSK1n/view?usp=sharing
 
-## Our Pre-trained Model:
+## The Pre-trained Model:
 
 Test data: https://drive.google.com/file/d/1PCl0VVfhlcEaz-eSc5alP_U8uaVQGc_P/view?usp=sharing
 
@@ -52,11 +56,10 @@ After PyTorch is installed, do the followings
 │   │   └── placeholder
 │   ├── model.py
 │   ├── pickle_glove.py
-│   ├── README.html
 │   ├── README.md
 │   ├── reinforce.py
 │   └── rougefonc.py
-└── data
+└── data *outside of the Git repository*
         ├── CNN_DM_stories
         │   └── A lot of stories files
         ├── CNN_DM_pickle_data
@@ -67,6 +70,7 @@ After PyTorch is installed, do the followings
         │   │   ├── val_000.bin
         │   │   ├── ...
         │   │   └── val_287.bin
+        │   ├── pickled/ *create this repository*
         │   ├── vocab_100d.txt
         |   └── vocab
         └── url_lists
