@@ -296,9 +296,9 @@ def main():
         url_list = read_text_file(url_file)
         url_hashes = get_url_hashes(url_list)
         url = zip(url_list, url_hashes)
-        story_fnames = ["/home/hmwv1114/workdisk/workspace/cnn_dm_stories/cnn_stories_tokenized/" + s + ".story"
+        story_fnames = ["../data/cnn_dm_stories/cnn_stories_tokenized/" + s + ".story"
                         if u.find(
-            'cnn.com') >= 0 else "/home/hmwv1114/workdisk/workspace/cnn_dm_stories/dm_stories_tokenized/" + s + ".story"
+            'cnn.com') >= 0 else "../data/cnn_dm_stories/dm_stories_tokenized/" + s + ".story"
                         for u, s in url]
 
         new_lines = []
