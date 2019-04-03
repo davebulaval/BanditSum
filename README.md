@@ -64,8 +64,7 @@ After PyTorch is installed, do the followings
 │   └── rougefonc.py
 └── data *outside of the Git repository*
         ├── SciSoft 
-        │   └── ROUGE-1.5.5
-        │       └── data
+        │   └── *Place to drop the ROUGE-1.5.5 files*
         ├── CNN_DM_stories
         │   └── A lot of stories files
         ├── CNN_DM_pickle_data
@@ -91,6 +90,27 @@ After PyTorch is installed, do the followings
                 ├── dailymail_wayback_validation_urls.txt
                 └── readme
 ```
+5. Download the [ROUGE-1.5.5](https://github.com/andersjo/pyrouge) repository
+  5.1 Move the ROUGE-1.5.5 repository from pyrouge/tools into data/Scisoft
+  5.2 You will now have `data/SciSoft/ROUGE-1.5.5/{bunch of files}`
 4. Be sure to have created the approprieted folders names
 3. Run `dataLoader.main` to pickle the data
 4. Run `main.py` to train the model
+
+# Error Handling
+If you get this error message
+```
+Cannot open exception db file for reading: /home/pythonrouge/pythonrouge/RELEASE-1.5.5/data/WordNet-2.0.exc.db
+```
+
+As stated in the following [solution](https://libraries.io/github/tagucci/pythonrouge) do the following
+
+```
+cd pythonrouge/RELEASE-1.5.5/data/
+```
+```
+rm WordNet-2.0.exc.db
+```
+```
+./WordNet-2.0-Exceptions/buildExeptionDB.pl ./WordNet-2.0-Exceptions ./smart_common_words.txt ./WordNet-2.0.exc.db
+```
