@@ -63,6 +63,9 @@ After PyTorch is installed, do the followings
 │   │   └── lead/ *repository*
 │   └── rougefonc.py
 └── data *outside of the Git repository*
+        ├── SciSoft 
+        │   └── ROUGE-1.5.5
+        │       └── data
         ├── CNN_DM_stories
         │   └── A lot of stories files
         ├── CNN_DM_pickle_data
