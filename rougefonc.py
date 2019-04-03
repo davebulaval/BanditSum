@@ -31,9 +31,6 @@ def RougeTest_rouge(ref, hyp, rouge_metric="all", max_num_of_bytes=-1):
                 rouge_score[0]['rouge-l']['p'], rouge_score[0]['rouge-l']['r'], rouge_score[0]['rouge-l']['f'])
 
 
-home_path = os.path.expanduser('~')
-
-
 def RougeTest_pyrouge(ref, hyp, id=0, rouge_metric='all', compute_score=True,
                       path='./result', max_num_of_bytes=-1):
     # initialization
@@ -49,11 +46,11 @@ def RougeTest_pyrouge(ref, hyp, id=0, rouge_metric='all', compute_score=True,
 
     if compute_score:
         if max_num_of_bytes > 0:
-            r = Rouge155('%s/SciSoft/ROUGE-1.5.5/' % home_path,
-                         '-e %s/SciSoft/ROUGE-1.5.5/data -a -c 95 -m -n 2 -b %d' % (home_path, max_num_of_bytes))
+            r = Rouge155('../data/SciSoft/ROUGE-1.5.5/',
+                         '-e ../data/SciSoft/ROUGE-1.5.5/data -a -c 95 -m -n 2 -b %d' % max_num_of_bytes)
         else:
-            r = Rouge155('%s/SciSoft/ROUGE-1.5.5/' % home_path,
-                         '-e %s/SciSoft/ROUGE-1.5.5/data -a -c 95 -m -n 2' % home_path)
+            r = Rouge155('../data/SciSoft/ROUGE-1.5.5/',
+                         '-e ../data/SciSoft/ROUGE-1.5.5/data -a -c 95 -m -n 2')
         r.system_dir = path
         r.model_dir = path
         r.system_filename_pattern = 'hyp.(\d+).txt'
