@@ -194,7 +194,7 @@ def main():
     parser = argparse.ArgumentParser()
 
     parser.add_argument('--vocab_file', type=str, default='../data/CNN_DM_pickle_data/vocab_100d.p')
-    parser.add_argument('--data_dir', type=str, default='../data/CNN_DM_pickle_data')
+    parser.add_argument('--data_dir', type=str, default='../data/CNN_DM_pickle_data/')
     parser.add_argument('--model_file', type=str, default='../model/summary.model')
     parser.add_argument('--epochs_ext', type=int, default=10)
     parser.add_argument('--load_ext', action='store_true')
@@ -204,7 +204,7 @@ def main():
 
     parser.add_argument('--device', type=int, default=0,
                         help='select GPU')
-    parser.add_argument('--std_rouge', action='store_true')
+    parser.add_argument('--std_rouge', action='store_true', default=True)
 
     parser.add_argument('--oracle_length', type=int, default=3,
                         help='-1 for giving actual oracle number of sentences'
