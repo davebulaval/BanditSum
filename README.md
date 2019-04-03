@@ -58,6 +58,9 @@ After PyTorch is installed, do the followings
 │   ├── pickle_glove.py
 │   ├── README.md
 │   ├── reinforce.py
+│   ├── result *create this repository*
+│   │   ├── rl/ *repository*
+│   │   └── lead/ *repository*
 │   └── rougefonc.py
 └── data *outside of the Git repository*
         ├── CNN_DM_stories
