@@ -195,7 +195,7 @@ def main():
 
     parser.add_argument('--vocab_file', type=str, default='../data/CNN_DM_pickle_data/vocab_100d.p')
     parser.add_argument('--data_dir', type=str, default='../data/CNN_DM_pickle_data/')
-    parser.add_argument('--model_file', type=str, default='../model/summary.model')
+    parser.add_argument('--model_file', type=str, default='./model/summary.model')
     parser.add_argument('--epochs_ext', type=int, default=10)
     parser.add_argument('--load_ext', action='store_true')
     parser.add_argument('--hidden', type=int, default=200)
