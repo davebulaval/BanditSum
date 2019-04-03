@@ -43,9 +43,9 @@ def RougeTest_pyrouge(ref, hyp, id=0, rouge_metric='all', compute_score=True,
         os.mkdir(path)
     # write new ref and hyp
     with codecs.open(os.path.join(path, 'ref.' + str(id) + '.txt'), 'w', encoding="UTF-8") as f:
-        f.write(Rouge155.convert_text_to_rouge_format('\n'.join(ref).decode('UTF-8', 'ignore')))
+        f.write(Rouge155.convert_text_to_rouge_format('\n'.join(ref)))
     with codecs.open(os.path.join(path, 'hyp.' + str(id) + '.txt'), 'w', encoding="UTF-8") as f:
-        f.write(Rouge155.convert_text_to_rouge_format('\n'.join(hyp).decode('UTF-8', 'ignore')))
+        f.write(Rouge155.convert_text_to_rouge_format('\n'.join(hyp)))
 
     if compute_score:
         if max_num_of_bytes > 0:
@@ -99,7 +99,6 @@ def cutwords(sens, max_num_of_chars):
 def from_summary_index_generate_hyp_ref(doc, summary_index):
     hyp = [doc.content[i].strip() for i in summary_index]
     ref = [s.strip() for s in doc.summary]
-
     return hyp, ref
 
 
