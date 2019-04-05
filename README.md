@@ -32,8 +32,6 @@ Pre-trained model: https://drive.google.com/file/d/13UB2GH_TT5SPQaYydnxYXYHClD4p
 The vocab file: https://drive.google.com/file/d/1W0QQkz5VNCk-YAnpSRc0ONFgR5SPGDA8/view?usp=sharing
 
 ### Installation
-Our code requires PyTorch version >= 0.4.0. Please follow the instructions here: https://github.com/pytorch/pytorch#installation. (work with torch 1.0)
-
 After PyTorch is installed, do the followings 
 
 1. Dowload the [url_lists dataset](https://github.com/abisee/cnn-dailymail)
@@ -91,8 +89,11 @@ After PyTorch is installed, do the followings
                 └── readme
 ```
 5. Download the [ROUGE-1.5.5](https://github.com/andersjo/pyrouge) repository
-  5.1 Move the ROUGE-1.5.5 repository from pyrouge/tools into data/Scisoft
-  5.2 You will now have `data/SciSoft/ROUGE-1.5.5/{bunch of files}`
+   
+   5.1 Move the ROUGE-1.5.5 repository from pyrouge/tools into data/Scisoft
+   
+   5.2 You will now have `data/SciSoft/ROUGE-1.5.5/{bunch of files}`
+
 4. Be sure to have created the approprieted folders names
 3. Run `dataLoader.main` to pickle the data
 4. Run `main.py` to train the model
