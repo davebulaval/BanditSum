@@ -44,7 +44,6 @@ def extractive_training(args, vocab):
                            "bsz", str(args.batch_size), "rl_loss", str(args.rl_loss_method),
                            "train_example_quota", str(args.train_example_quota),
                            "length_limit", str(args.length_limit),
-                           "data", os.path.split(args.data_dir)[-1],
                            "hidden", str(args.hidden),
                            "dropout", str(args.dropout),
                            'ext'))
@@ -121,6 +120,7 @@ def extractive_training(args, vocab):
     for epoch in range(args.epochs_ext):
         train_iter = data_loader.chunked_data_reader("train", data_quota=args.train_example_quota)
         step_in_epoch = 0
+        train_iter = train_iter[0]
         for dataset in train_iter:
             for step, docs in enumerate(BatchDataLoader(dataset, shuffle=True, batch_size=args.batch_size)):
                 try:
@@ -196,7 +196,7 @@ def main():
     parser.add_argument('--vocab_file', type=str, default='./data/CNN_DM_pickle_data/vocab_100d.p')
     parser.add_argument('--data_dir', type=str, default='./data/CNN_DM_pickle_data/')
     parser.add_argument('--model_file', type=str, default='./model/summary.model')
-    parser.add_argument('--epochs_ext', type=int, default=10)
+    parser.add_argument('--epochs_ext', type=int, default=1)
     parser.add_argument('--load_ext', action='store_true')
     parser.add_argument('--hidden', type=int, default=200)
     parser.add_argument('--dropout', type=float, default=0.)
