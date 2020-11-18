@@ -122,7 +122,7 @@ def extractive_training(args, vocab):
         train_iter = data_loader.chunked_data_reader("train", data_quota=args.train_example_quota)
         step_in_epoch = 0
         for dataset in train_iter:
-            for step, docs in enumerate(BatchDataLoader(dataset, shuffle=True)):
+            for step, docs in enumerate(BatchDataLoader(dataset, shuffle=True, batch_size=args.batch_size)):
                 try:
                     extract_net.train()
                     # if True:
