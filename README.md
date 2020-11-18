@@ -97,8 +97,8 @@ The vocab file: https://drive.google.com/file/d/1W0QQkz5VNCk-YAnpSRc0ONFgR5SPGDA
 
 > Be sure to have created the approprieted folders names
 
-3. From the repository directory run `dataLoader.main` to pickle the data.
-4. From the repository directory run `main.py` to train the model
+3. From the repository directory run `python dataLoader.py` to pickle the data.
+4. From the repository directory run `python main.py` to train the model
 
 *10 epochs took about 4 days on a RTX 2080 ti. For paper replication you can drop the number of epochs down to 2. I would recommand this number.*
 
