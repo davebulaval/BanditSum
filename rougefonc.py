@@ -1,6 +1,6 @@
-import shutil
-import os
 import codecs
+import os
+import shutil
 
 from pyrouge import Rouge155
 from rouge import Rouge

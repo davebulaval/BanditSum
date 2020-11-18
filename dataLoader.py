@@ -1,7 +1,8 @@
 import hashlib
 import os
-import pickle, tarfile
+import pickle
 import random
+import tarfile
 
 import numpy as np
 

@@ -3,9 +3,8 @@ from __future__ import print_function
 import argparse
 import time
 
-import torch
 import numpy as np
-import os
+import torch
 
 import dataLoader
 import helper

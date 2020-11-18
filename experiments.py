@@ -1,9 +1,11 @@
-import numpy as np
-import dataLoader
 import pickle as pkl
+
+import numpy as np
+from nltk.corpus import stopwords
+
+import dataLoader
 import rougefonc
 from helper import tokens_to_sentences
-from nltk.corpus import stopwords
 
 
 ###### greedily creating the label
