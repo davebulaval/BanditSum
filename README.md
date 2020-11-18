@@ -87,16 +87,17 @@ After PyTorch is installed, do the followings
                 ├── dailymail_wayback_validation_urls.txt
                 └── readme
 ```
-5. Run `pickle_glove.py` to parse and pickle the Glove vectors.
+5. From the repository directory run `pickle_glove.py` to parse and pickle the Glove vectors.
 5. Download the [ROUGE-1.5.5](https://github.com/andersjo/pyrouge) repository
    
-   5.1 Move the ROUGE-1.5.5 repository from pyrouge/tools into data/Scisoft
+   5.1 Move the ROUGE-1.5.5 repository from pyrouge/tools (the tools directory) into data/Scisoft
    
    5.2 You will now have `data/SciSoft/ROUGE-1.5.5/{bunch of files}`
 
 > Be sure to have created the approprieted folders names
-3. Run `dataLoader.main` to pickle the data
-4. Run `main.py` to train the model
+
+3. From the repository directory run `dataLoader.main` to pickle the data.
+4. From the repository directory run `main.py` to train the model
 
 *10 epochs took about 4 days on a RTX 2080 ti. For paper replication you can drop the number of epochs down to 2. I would recommand this number.*
 
