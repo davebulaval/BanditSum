@@ -106,7 +106,7 @@ class Vocab:
         except KeyError:
             return self.w2i['<unk>']
 
-    def add_vocab(self, vocab_file="../data/finished_files/vocab"):
+    def add_vocab(self, vocab_file="./data/finished_files/vocab"):
         with open(vocab_file, "r") as f:
             for line in f:
                 self.word_list.append(line.split()[0])  # only want the word, not the count
@@ -117,7 +117,7 @@ class Vocab:
             self.i2w[self.count] = w
             self.count += 1
 
-    def add_embedding(self, gloveFile="../data/finished_files/glove.6B/glove.6B.100d.txt", embed_size=100):
+    def add_embedding(self, gloveFile="./data/finished_files/glove.6B/glove.6B.100d.txt", embed_size=100):
         print("Loading Glove embeddings")
         with open(gloveFile, 'r') as f:
             model = {}
@@ -154,7 +154,7 @@ class PickleReader:
     this class intends to read pickle files converted by RawReader
     """
 
-    def __init__(self, pickle_data_dir="../data/CNN_DM_pickle_data/"):
+    def __init__(self, pickle_data_dir="./data/CNN_DM_pickle_data/"):
         """
         :param pickle_data_dir: the base_dir where the pickle data are stored in
         this dir should contain train.p, val.p, test.p, and vocab.p

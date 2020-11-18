@@ -114,9 +114,9 @@ if __name__ == '__main__':
     torch.manual_seed(233)
     parser = argparse.ArgumentParser()
 
-    parser.add_argument('--vocab_file', type=str, default='../data/CNN_DM_pickle_data/vocab_100d.p')
-    parser.add_argument('--data_dir', type=str, default='../data/CNN_DM_pickle_data/')
-    parser.add_argument('--model_file', type=str, default='../model/summary.ext')
+    parser.add_argument('--vocab_file', type=str, default='./data/CNN_DM_pickle_data/vocab_100d.p')
+    parser.add_argument('--data_dir', type=str, default='./data/CNN_DM_pickle_data/')
+    parser.add_argument('--model_file', type=str, default='./model/summary.ext')
 
     parser.add_argument('--device', type=int, default=0,
                         help='select GPU')

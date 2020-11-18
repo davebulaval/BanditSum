@@ -18,7 +18,7 @@ from reinforce import ReinforceReward
 np.set_printoptions(precision=4, suppress=True)
 
 
-# ../model/summary.model.simpleRNN.avg_f.False.batch_avg.oracle_l.3.
+# ./model/summary.model.simpleRNN.avg_f.False.batch_avg.oracle_l.3.
 # bsz.20.rl_loss.2.train_example_quota.-1.length_limit.-1.data.CNN_DM_pickle_data.
 def extractive_training(args, vocab):
     print(args)
@@ -193,8 +193,8 @@ def main():
     torch.manual_seed(233)
     parser = argparse.ArgumentParser()
 
-    parser.add_argument('--vocab_file', type=str, default='../data/CNN_DM_pickle_data/vocab_100d.p')
-    parser.add_argument('--data_dir', type=str, default='../data/CNN_DM_pickle_data/')
+    parser.add_argument('--vocab_file', type=str, default='./data/CNN_DM_pickle_data/vocab_100d.p')
+    parser.add_argument('--data_dir', type=str, default='./data/CNN_DM_pickle_data/')
     parser.add_argument('--model_file', type=str, default='./model/summary.model')
     parser.add_argument('--epochs_ext', type=int, default=10)
     parser.add_argument('--load_ext', action='store_true')
