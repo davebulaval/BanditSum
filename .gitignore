@@ -7,3 +7,5 @@ data/CNN_DM_pickle_data/vocab_100d.txt
 data/CNN_DM_stories/cnn_stories_tokenized/
 data/CNN_DM_stories/dm_stories_tokenized/
 
+data/CNN_DM_pickle_data/pickled/*
+
