@@ -39,15 +39,10 @@ def write_to_pickle(url_file, out_file, chunk_size=1000):
     url_list = read_text_file(url_file)
     url_hashes = get_url_hashes(url_list)
     url = zip(url_list, url_hashes)
-    story_fnames = ["../data/CNN_DM_stories/" + s + ".story"
+    story_fnames = ["./data/CNN_DM_stories/cnn_stories_tokenized" + s + ".story"
                     if u.find(
-        'cnn.com') >= 0 else "../data/CNN_DM_stories/" + s + ".story"
+        'cnn.com') >= 0 else "./data/CNN_DM_stories/dm_stories_tokenized" + s + ".story"
                     for u, s in url]
-    # todo rework the path since my approach is not good
-    # ["/home/hmwv1114/workdisk/workspace/cnn_dm_stories/cnn_stories_tokenized/" + s + ".story"
-    #  if u.find(
-    #     'cnn.com') >= 0 else "/home/hmwv1114/workdisk/workspace/cnn_dm_stories/dm_stories_tokenized/" + s + ".story"
-    #  for u, s in url]
 
     print(f"Pickling the {url_file.split('/')[-1].split('.')[0]} data")
     new_lines = []
@@ -71,13 +66,13 @@ def write_to_pickle(url_file, out_file, chunk_size=1000):
 
 
 def main():
-    train_urls = "../data/url_lists/all_train.txt"
-    val_urls = "../data/url_lists/all_val.txt"
-    test_urls = "../data/url_lists/all_test.txt"
+    train_urls = "./data/url_lists/all_train.txt"
+    val_urls = "./data/url_lists/all_val.txt"
+    test_urls = "./data/url_lists/all_test.txt"
 
-    write_to_pickle(test_urls, "../data/CNN_DM_pickle_data/pickled/test_%03d.bin.p", chunk_size=100000000)
-    write_to_pickle(val_urls, "../data/CNN_DM_pickle_data/pickled/val_%03d.bin.p", chunk_size=100000000)
-    write_to_pickle(train_urls, "../data/CNN_DM_pickle_data/pickled/train_%03d.bin.p")
+    write_to_pickle(test_urls, "./data/CNN_DM_pickle_data/pickled/test_%03d.bin.p", chunk_size=100000000)
+    write_to_pickle(val_urls, "./data/CNN_DM_pickle_data/pickled/val_%03d.bin.p", chunk_size=100000000)
+    write_to_pickle(train_urls, "./data/CNN_DM_pickle_data/pickled/train_%03d.bin.p")
 
 
 if __name__ == "__main__":

@@ -1,7 +1,6 @@
 .
 ├── data
 │ ├── CNN_DM_pickle_data
-│ │ ├── drop_vocab_here.md
 │ │ ├── pickled
 │ │ └── vocab_100d.txt
 │ ├── CNN_DM_stories
