@@ -34,7 +34,7 @@ The vocab file: https://drive.google.com/file/d/1W0QQkz5VNCk-YAnpSRc0ONFgR5SPGDA
 2. Download `CNN_STORIES_TOKENIZED` and `DM_STORIES_TOKENIZED` from [here](https://github.com/JafferWilson/Process-Data-of-CNN-DailyMail)
 and move the data into `data/CNN_DM_stories` (next to the file `drop_data_stories_here.md`). After that you will 
 have `data/CNN_DM_stories/folder 1` and `data/CNN_DM_stories/folder 2`.
-3. Download the Glove 100d(glove.6B.zip) [vocab](https://nlp.stanford.edu/projects/glove/), rename `glove.6B.100d.txt` 
+3. Download the Glove 100d(glove.6B.zip) [vocab vectors](https://nlp.stanford.edu/projects/glove/), rename `glove.6B.100d.txt` 
 to `vocab_100d.txt` and move it into `data/CNN_DM_pickle_data` (next to the file `drop_vocab_here.md`). 
 
 After that, your repository should look like the content of `tree.md`.
