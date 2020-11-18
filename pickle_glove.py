@@ -4,7 +4,7 @@ from dataLoader import Vocab
 
 print('Indexing word vectors.')
 
-root_path = "../data/CNN_DM_pickle_data/"
+root_path = "./data/CNN_DM_pickle_data/"
 glove_file = "vocab_100d.txt"
 vocab_file = "vocab"
 
