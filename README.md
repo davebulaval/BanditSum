@@ -38,7 +38,6 @@ After PyTorch is installed, do the followings
 2. Download the [chunked dataset](https://github.com/JafferWilson/Process-Data-of-CNN-DailyMail)
 3. Download the Glove 100d(glove.6B.zip) [vocab](https://nlp.stanford.edu/projects/glove/)
 4. Rename the `glove.6B.100d.txt` to `vocab_100d.txt`
-5. Run `pickle_glove.py` to parse and pickle the Glove vectors.
 4. Create a data directory at the same level of the BanditSum repository and place the datasets as the following (also note where the vectors should be)
 ```bash
 .
@@ -88,13 +87,14 @@ After PyTorch is installed, do the followings
                 ├── dailymail_wayback_validation_urls.txt
                 └── readme
 ```
+5. Run `pickle_glove.py` to parse and pickle the Glove vectors.
 5. Download the [ROUGE-1.5.5](https://github.com/andersjo/pyrouge) repository
    
    5.1 Move the ROUGE-1.5.5 repository from pyrouge/tools into data/Scisoft
    
    5.2 You will now have `data/SciSoft/ROUGE-1.5.5/{bunch of files}`
 
-4. Be sure to have created the approprieted folders names
+> Be sure to have created the approprieted folders names
 3. Run `dataLoader.main` to pickle the data
 4. Run `main.py` to train the model
 
