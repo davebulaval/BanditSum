@@ -37,10 +37,7 @@ have `data/CNN_DM_stories/folder 1` and `data/CNN_DM_stories/folder 2`.
 3. Download the Glove 100d(glove.6B.zip) [vocab](https://nlp.stanford.edu/projects/glove/), rename `glove.6B.100d.txt` 
 to `vocab_100d.txt` and move it into `data/CNN_DM_pickle_data` (next to the file `drop_vocab_here.md`). 
 
-After that, your repository should look like this:
-```bash
-
-```
+After that, your repository should look like the content of `tree.md`.
 
 ## Run
 1. From the repository directory run `pickle_glove.py` to parse and pickle the Glove vectors.
