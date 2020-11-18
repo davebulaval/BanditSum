@@ -32,9 +32,10 @@ Pre-trained model: https://drive.google.com/file/d/13UB2GH_TT5SPQaYydnxYXYHClD4p
 The vocab file: https://drive.google.com/file/d/1W0QQkz5VNCk-YAnpSRc0ONFgR5SPGDA8/view?usp=sharing
 
 ### Installation
-After PyTorch is installed, do the followings 
 
-1. Dowload the [url_lists dataset](https://github.com/abisee/cnn-dailymail)
+1. Install the requirements with `pip install -r requirements.txt`
+2. Download nltk data with `python nltk_download.py`
+1. Download the [url_lists dataset](https://github.com/abisee/cnn-dailymail)
 2. Download the [chunked dataset](https://github.com/JafferWilson/Process-Data-of-CNN-DailyMail)
 3. Download the Glove 100d(glove.6B.zip) [vocab](https://nlp.stanford.edu/projects/glove/)
 4. Rename the `glove.6B.100d.txt` to `vocab_100d.txt`
