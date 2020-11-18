@@ -31,7 +31,7 @@ def RougeTest_rouge(ref, hyp, rouge_metric="all", max_num_of_bytes=-1):
                 rouge_score[0]['rouge-l']['p'], rouge_score[0]['rouge-l']['r'], rouge_score[0]['rouge-l']['f'])
 
 
-home_path = os.path.expanduser('~')
+home_path = "./data"
 
 
 def RougeTest_pyrouge(ref, hyp, id=0, rouge_metric='all', compute_score=True,
