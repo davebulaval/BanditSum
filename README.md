@@ -61,19 +61,10 @@ The vocab file: https://drive.google.com/file/d/1W0QQkz5VNCk-YAnpSRc0ONFgR5SPGDA
 │   │   └── lead/
 │   └── rougefonc.py
 └── data *outside of the Git repository*
-        ├── SciSoft 
-        │   └── *Place to drop the ROUGE-1.5.5 files*
         ├── CNN_DM_stories
-        │   └── A lot of stories files
+        │   └── .... two folders here!
         ├── CNN_DM_pickle_data
-        │   ├── chunked
-        │   │   ├── test_000.bin
-        │   │   ├── ...
-        │   │   ├── train_287.bin
-        │   │   ├── val_000.bin
-        │   │   ├── ...
-        │   │   └── val_287.bin
-        │   ├── pickled/ *create this repository*
+        │   ├── pickled
         │   ├── vocab_100d.txt *move vectors here*
         |   └── vocab
         └── url_lists
@@ -89,14 +80,6 @@ The vocab file: https://drive.google.com/file/d/1W0QQkz5VNCk-YAnpSRc0ONFgR5SPGDA
                 └── readme
 ```
 5. From the repository directory run `pickle_glove.py` to parse and pickle the Glove vectors.
-5. Download the [ROUGE-1.5.5](https://github.com/andersjo/pyrouge) repository
-   
-   5.1 Move the ROUGE-1.5.5 repository from pyrouge/tools (the tools directory) into data/Scisoft
-   
-   5.2 You will now have `data/SciSoft/ROUGE-1.5.5/{bunch of files}`
-
-> Be sure to have created the approprieted folders names
-
 3. From the repository directory run `python pickle_data.py` to pickle the data.
 4. From the repository directory run `python main.py` to train the model
 
