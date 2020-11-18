@@ -39,9 +39,9 @@ def write_to_pickle(url_file, out_file, chunk_size=1000):
     url_list = read_text_file(url_file)
     url_hashes = get_url_hashes(url_list)
     url = zip(url_list, url_hashes)
-    story_fnames = ["./data/CNN_DM_stories/cnn_stories_tokenized" + s + ".story"
+    story_fnames = ["./data/CNN_DM_stories/cnn_stories_tokenized/" + s + ".story"
                     if u.find(
-        'cnn.com') >= 0 else "./data/CNN_DM_stories/dm_stories_tokenized" + s + ".story"
+        'cnn.com') >= 0 else "./data/CNN_DM_stories/dm_stories_tokenized/" + s + ".story"
                     for u, s in url]
 
     print(f"Pickling the {url_file.split('/')[-1].split('.')[0]} data")
@@ -55,7 +55,7 @@ def write_to_pickle(url_file, out_file, chunk_size=1000):
         try:
             art, abs = get_art_abs(filename)
         except:
-            print(filename)
+            print(f"Pickling of file {filename} did not worked.")
             continue
         new_lines.append(Document(art, abs))
 
