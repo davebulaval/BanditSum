@@ -39,7 +39,7 @@ After PyTorch is installed, do the followings
 3. Download the Glove 100d(glove.6B.zip) [vocab](https://nlp.stanford.edu/projects/glove/)
 4. Rename the `glove.6B.100d.txt` to `vocab_100d.txt`
 5. Run `pickle_glove.py` to parse and pickle the Glove vectors.
-4. Create a data directory at the same level of the BanditSum repository and place the datasets as the following
+4. Create a data directory at the same level of the BanditSum repository and place the datasets as the following (also note where the vectors should be)
 ```bash
 .
 ├── BanditSum
@@ -56,9 +56,9 @@ After PyTorch is installed, do the followings
 │   ├── pickle_glove.py
 │   ├── README.md
 │   ├── reinforce.py
-│   ├── result *create this repository*
-│   │   ├── rl/ *repository*
-│   │   └── lead/ *repository*
+│   ├── result 
+│   │   ├── rl/
+│   │   └── lead/
 │   └── rougefonc.py
 └── data *outside of the Git repository*
         ├── SciSoft 
@@ -74,7 +74,7 @@ After PyTorch is installed, do the followings
         │   │   ├── ...
         │   │   └── val_287.bin
         │   ├── pickled/ *create this repository*
-        │   ├── vocab_100d.txt
+        │   ├── vocab_100d.txt *move vectors here*
         |   └── vocab
         └── url_lists
                 ├── all_test.txt
