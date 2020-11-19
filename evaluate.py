@@ -81,18 +81,18 @@ def ext_model_eval(model, vocab, args, eval_data="test"):
             outputs = model(sents)
 
             compute_score = (step == len(dataset) - 1) or (args.std_rouge is False)
+            std_rouge = True  # since pyrouge doesn't manage diff len of doc.sum and _hyp we use ROUGE155 here.
             if eval_data == "test":
-                # try:
                 reward, lead3_r = reinforce_loss(outputs, doc, id=phase * 1000 + step,
                                                  max_num_of_sents=oracle_summary_sent_num,
                                                  max_num_of_bytes=args.length_limit,
-                                                 std_rouge=args.std_rouge, rouge_metric="all",
+                                                 std_rouge=std_rouge, rouge_metric="all",
                                                  compute_score=compute_score)
             else:
                 reward, lead3_r = reinforce_loss(outputs, doc, id=phase * 1000 + step,
                                                  max_num_of_sents=oracle_summary_sent_num,
                                                  max_num_of_bytes=args.length_limit,
-                                                 std_rouge=args.std_rouge, rouge_metric=args.rouge_metric,
+                                                 std_rouge=std_rouge, rouge_metric=args.rouge_metric,
                                                  compute_score=compute_score)
 
             if compute_score:

@@ -121,7 +121,6 @@ def extractive_training(args, vocab):
     print("starting training")
     n_step = 100
 
-    count = 0
     for epoch in range(args.epochs_ext):
         train_iter = data_loader.chunked_data_reader("train", data_quota=args.train_example_quota)
         step_in_epoch = 0
@@ -170,10 +169,8 @@ def extractive_training(args, vocab):
                         optimizer_ext.zero_grad()
                     logging.info('Epoch %d Step %d Reward %.4f' % (epoch, step_in_epoch, reward))
                 except Exception as e:
-                    count += 1
+                    pass
 
-                if step_in_epoch == 100 or step_in_epoch == 200 or step_in_epoch == 300:
-                    print(count)
                 if (step_in_epoch) % n_step == 0 and step_in_epoch != 0:
                     print('Epoch ' + str(epoch) + ' Step ' + str(step_in_epoch) +
                           ' reward: ' + str(np.mean(reward_list)))
