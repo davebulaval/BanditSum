@@ -43,6 +43,9 @@ def reinforce_loss(probs, doc, id=0,
         except AssertionError as e:  # doest not work when len of doc.sum and _hyp are different.
             rl_baseline_reward = 0
             lead3_reward = 0
+        except ValueError as e:  # cases where a predicted document is only a "." so the cutting make it an empty doc
+            rl_baseline_reward = 0
+            lead3_reward = 0
 
     return rl_baseline_reward, lead3_reward
 
@@ -66,11 +69,6 @@ def ext_model_eval(model, vocab, args, eval_data="test"):
             doc.summary = tokens_to_sentences(doc.summary)
             if len(doc.content) == 0 or len(doc.summary) == 0:
                 continue
-
-            # if doc.content[0].find('CNN') >= 0:
-            #     args.oracle_length = 3
-            # else:
-            #     args.oracle_length = 4
 
             if args.oracle_length == -1:  # use true oracle length
                 oracle_summary_sent_num = len(doc.summary)
