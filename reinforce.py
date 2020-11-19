@@ -94,7 +94,7 @@ class ReinforceReward:
         self.global_avg_reward = 0.
         self.train_examples_seen = 0.
 
-        self.std_rouge = False
+        self.std_rouge = std_rouge
         self.rouge_metric = rouge_metric
         self.rl_baseline_method = rl_baseline_method
         self.b = b  # batch_size

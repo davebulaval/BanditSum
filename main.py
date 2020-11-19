@@ -49,6 +49,9 @@ def extractive_training(args, vocab):
                            'ext'))
     print(model_name)
 
+    # kill the ROUGE155 logger
+    logging.getLogger('global').disabled = True
+
     log_name = ".".join(("./log/model",
                          str(args.ext_model),
                          str(args.rouge_metric), str(args.std_rouge),

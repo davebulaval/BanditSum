@@ -32,10 +32,12 @@ def RougeTest_rouge(ref, hyp, rouge_metric="all", max_num_of_bytes=-1):
 
 
 home_path = "./data"
+rouge155 = Rouge155('%s/SciSoft/ROUGE-1.5.5/' % home_path,
+                    '-e %s/SciSoft/ROUGE-1.5.5/data -a -c 95 -m -n 2 -b %d' % (home_path, -1))
 
 
 def RougeTest_pyrouge(ref, hyp, id=0, rouge_metric='all', compute_score=True,
-                      path='./result', max_num_of_bytes=-1):
+                      path='./result'):
     # initialization
     if not os.path.exists('./result'):
         os.mkdir('./result')
@@ -48,23 +50,16 @@ def RougeTest_pyrouge(ref, hyp, id=0, rouge_metric='all', compute_score=True,
         f.write(Rouge155.convert_text_to_rouge_format('\n'.join(hyp)))
 
     if compute_score:
-        if max_num_of_bytes > 0:
-            r = Rouge155('%s/SciSoft/ROUGE-1.5.5/' % home_path,
-                         '-e %s/SciSoft/ROUGE-1.5.5/data -a -c 95 -m -n 2 -b %d' % (home_path, max_num_of_bytes))
-        else:
-            r = Rouge155('%s/SciSoft/ROUGE-1.5.5/' % home_path,
-                         '-e %s/SciSoft/ROUGE-1.5.5/data -a -c 95 -m -n 2' % home_path)
-        r.system_dir = path
-        r.model_dir = path
-        r.system_filename_pattern = 'hyp.(\d+).txt'
-        r.model_filename_pattern = 'ref.#ID#.txt'
+        rouge155.system_dir = path
+        rouge155.model_dir = path
+        rouge155.system_filename_pattern = 'hyp.(\d+).txt'
+        rouge155.model_filename_pattern = 'ref.#ID#.txt'
 
-        output = r.evaluate()
-        # print(output)
-        output_dict = r.output_to_dict(output)
+        output = rouge155.evaluate()
+        output_dict = rouge155.output_to_dict(output)
         # cleanup
         shutil.rmtree(path)
-        shutil.rmtree(r._config_dir)
+        shutil.rmtree(rouge155._config_dir)
 
         if rouge_metric[1] == 'f':
             return output_dict["rouge_%s_f_score" % rouge_metric[0]]
@@ -110,7 +105,7 @@ def from_summary_index_compute_rouge(doc, summary_index, std_rouge=False, rouge_
         return 0.
 
     if std_rouge:
-        score = RougeTest_pyrouge(ref, hyp, rouge_metric=rouge_metric, max_num_of_bytes=max_num_of_bytes)
+        score = RougeTest_pyrouge(ref, hyp, rouge_metric=rouge_metric)
     else:
         score = RougeTest_rouge(ref, hyp, rouge_metric=rouge_metric, max_num_of_bytes=max_num_of_bytes)
     return score
