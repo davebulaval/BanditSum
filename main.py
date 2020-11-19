@@ -163,10 +163,9 @@ def extractive_training(args, vocab):
                         torch.nn.utils.clip_grad_norm(extract_net.parameters(), 1)  # gradient clipping
                         optimizer_ext.step()
                         optimizer_ext.zero_grad()
-                    # print('Epoch %d Step %d Reward %.4f'%(epoch,step_in_epoch,reward))
                     logging.info('Epoch %d Step %d Reward %.4f' % (epoch, step_in_epoch, reward))
                 except Exception as e:
-                    continue
+                    pass
 
                 if (step_in_epoch) % n_step == 0 and step_in_epoch != 0:
                     print('Epoch ' + str(epoch) + ' Step ' + str(step_in_epoch) +
@@ -184,6 +183,7 @@ def extractive_training(args, vocab):
                         torch.save(extract_net, model_name)
                     print('epoch ' + str(epoch) + ' reward in validation: '
                           + str(eval_reward) + ' lead3: ' + str(lead3_reward))
+
     return extract_net
 
 

@@ -78,7 +78,7 @@ def return_summary_index(probs_numpy, probs_torch, sample_method="greedy", max_n
     return summary_index, loss
 
 
-class ReinforceReward():
+class ReinforceReward:
     def __init__(self, std_rouge=False, rouge_metric="all", b=5, rl_baseline_method="greedy", loss_method=1):
         """
         :param std_rouge:
