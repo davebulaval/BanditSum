@@ -14,6 +14,7 @@ import model
 from dataLoader import *
 from helper import Config, tokens_to_sentences, prepare_data
 from reinforce import ReinforceReward
+from tools import bool_parse
 
 np.set_printoptions(precision=4, suppress=True)
 
@@ -117,9 +118,10 @@ def extractive_training(args, vocab):
 
     # Loss and Optimizer
     optimizer_ext = torch.optim.Adam(extract_net.parameters(), lr=args.lr, betas=(0., 0.999))
-
     print("starting training")
     n_step = 100
+
+    count = 0
     for epoch in range(args.epochs_ext):
         train_iter = data_loader.chunked_data_reader("train", data_quota=args.train_example_quota)
         step_in_epoch = 0
@@ -168,8 +170,10 @@ def extractive_training(args, vocab):
                         optimizer_ext.zero_grad()
                     logging.info('Epoch %d Step %d Reward %.4f' % (epoch, step_in_epoch, reward))
                 except Exception as e:
-                    pass
+                    count += 1
 
+                if step_in_epoch == 100 or step_in_epoch == 200 or step_in_epoch == 300:
+                    print(count)
                 if (step_in_epoch) % n_step == 0 and step_in_epoch != 0:
                     print('Epoch ' + str(epoch) + ' Step ' + str(step_in_epoch) +
                           ' reward: ' + str(np.mean(reward_list)))
@@ -205,7 +209,7 @@ def main():
 
     parser.add_argument('--device', type=int, default=0,
                         help='select GPU')
-    parser.add_argument('--std_rouge', action='store_true', default=True)
+    parser.add_argument('--std_rouge', type=bool_parse)
 
     parser.add_argument('--oracle_length', type=int, default=3,
                         help='-1 for giving actual oracle number of sentences'
