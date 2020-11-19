@@ -46,6 +46,9 @@ After that, your repository should look like the content of `tree.md`.
 
 *10 epochs took about 4 days on a RTX 2080 ti. For paper replication you can drop the number of epochs down to 2. I would recommand this number.*
 
+## Evaluating
+
+
 # Error Handling
 If you get this error message
 ```

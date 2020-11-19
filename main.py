@@ -167,7 +167,6 @@ def extractive_training(args, vocab):
                     logging.info('Epoch %d Step %d Reward %.4f' % (epoch, step_in_epoch, reward))
                 except Exception as e:
                     continue
-                    # print(e) #print ici
 
                 if (step_in_epoch) % n_step == 0 and step_in_epoch != 0:
                     print('Epoch ' + str(epoch) + ' Step ' + str(step_in_epoch) +
