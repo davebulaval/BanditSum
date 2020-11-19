@@ -58,7 +58,7 @@ Cannot open exception db file for reading: /home/pythonrouge/pythonrouge/RELEASE
 As stated in the following [solution](https://libraries.io/github/tagucci/pythonrouge) do the following
 
 ```
-cd pythonrouge/RELEASE-1.5.5/data/
+cd data/SciSoft/ROUGE-1.5.5/data/
 ```
 ```
 rm WordNet-2.0.exc.db
