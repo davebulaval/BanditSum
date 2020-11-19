@@ -35,10 +35,14 @@ def reinforce_loss(probs, doc, id=0,
                                                compute_score=compute_score, path=os.path.join('./result/rl'))
         lead3_reward = RougeTest_pyrouge(lead3_ref, lead3_hyp, id=id, rouge_metric=rouge_metric,
                                          compute_score=compute_score, path=os.path.join('./result/lead'))
-    else:  # doest not work since len of doc.sum and _hyp can be different.
-        rl_baseline_reward = RougeTest_rouge(rl_baseline_ref, rl_baseline_hyp, rouge_metric,
-                                             max_num_of_bytes=max_num_of_bytes)
-        lead3_reward = RougeTest_rouge(lead3_ref, lead3_hyp, rouge_metric, max_num_of_bytes=max_num_of_bytes)
+    else:
+        try:
+            rl_baseline_reward = RougeTest_rouge(rl_baseline_ref, rl_baseline_hyp, rouge_metric,
+                                                 max_num_of_bytes=max_num_of_bytes)
+            lead3_reward = RougeTest_rouge(lead3_ref, lead3_hyp, rouge_metric, max_num_of_bytes=max_num_of_bytes)
+        except AssertionError as e:  # doest not work when len of doc.sum and _hyp are different.
+            rl_baseline_reward = 0
+            lead3_reward = 0
 
     return rl_baseline_reward, lead3_reward
 
@@ -81,18 +85,17 @@ def ext_model_eval(model, vocab, args, eval_data="test"):
             outputs = model(sents)
 
             compute_score = (step == len(dataset) - 1) or (args.std_rouge is False)
-            std_rouge = True  # since pyrouge doesn't manage diff len of doc.sum and _hyp we use ROUGE155 here.
             if eval_data == "test":
                 reward, lead3_r = reinforce_loss(outputs, doc, id=phase * 1000 + step,
                                                  max_num_of_sents=oracle_summary_sent_num,
                                                  max_num_of_bytes=args.length_limit,
-                                                 std_rouge=std_rouge, rouge_metric="all",
+                                                 std_rouge=args.std_rouge, rouge_metric="all",
                                                  compute_score=compute_score)
             else:
                 reward, lead3_r = reinforce_loss(outputs, doc, id=phase * 1000 + step,
                                                  max_num_of_sents=oracle_summary_sent_num,
                                                  max_num_of_bytes=args.length_limit,
-                                                 std_rouge=std_rouge, rouge_metric=args.rouge_metric,
+                                                 std_rouge=args.std_rouge, rouge_metric=args.rouge_metric,
                                                  compute_score=compute_score)
 
             if compute_score:
