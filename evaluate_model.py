@@ -1,23 +1,21 @@
 import argparse
+import pickle
 import time
 
 import torch
-
-from src.dataLoader import *
 from src.evaluate import ext_model_eval
-from src.tools import bool_parse
 
 if __name__ == '__main__':
     torch.manual_seed(233)
     parser = argparse.ArgumentParser()
 
-    parser.add_argument('model_file', type=str)
     parser.add_argument('--vocab_file', type=str, default='./data/CNN_DM_pickle_data/vocab_100d.p')
     parser.add_argument('--data_dir', type=str, default='./data/CNN_DM_pickle_data/')
+    parser.add_argument('model_file', type=str)
 
     parser.add_argument('--device', type=int, default=0,
                         help='select GPU')
-    parser.add_argument('--std_rouge', type=bool_parse)
+    parser.add_argument('--std_rouge', action='store_true')
 
     parser.add_argument('--oracle_length', type=int, default=3,
                         help='-1 for giving actual oracle number of sentences'

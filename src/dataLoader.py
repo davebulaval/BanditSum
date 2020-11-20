@@ -139,7 +139,7 @@ class Vocab:
 
 class BatchDataLoader:
     def __init__(self, dataset, batch_size=1, shuffle=True):
-        assert isinstance(dataset, Dataset)
+        # assert isinstance(dataset, Dataset)
         assert len(dataset) >= batch_size
         self.shuffle = shuffle
         self.dataset = dataset
