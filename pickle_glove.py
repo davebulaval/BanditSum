@@ -1,6 +1,6 @@
 import pickle
 
-from src.dataLoader import Vocab
+from dataLoader import Vocab
 
 print('Indexing word vectors.')
 

@@ -11,7 +11,7 @@ from torch.autograd import Variable
 
 import model
 from src import evaluate
-from src.dataLoader import *
+from dataLoader import *
 from src.helper import Config, tokens_to_sentences, prepare_data
 from src.reinforce import ReinforceReward
 from src.tools import bool_parse
