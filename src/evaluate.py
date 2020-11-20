@@ -30,9 +30,9 @@ def reinforce_loss(probs, doc, id=0,
     lead3_hyp, lead3_ref = from_summary_index_generate_hyp_ref(doc, range(max_num_of_sents))
     if std_rouge:
         rl_baseline_reward = RougeTest_pyrouge(rl_baseline_ref, rl_baseline_hyp, id=id, rouge_metric=rouge_metric,
-                                               compute_score=compute_score, path=os.path.join('../result/rl'))
+                                               compute_score=compute_score, path=os.path.join('./result/rl'))
         lead3_reward = RougeTest_pyrouge(lead3_ref, lead3_hyp, id=id, rouge_metric=rouge_metric,
-                                         compute_score=compute_score, path=os.path.join('../result/lead'))
+                                         compute_score=compute_score, path=os.path.join('./result/lead'))
     else:
         try:
             rl_baseline_reward = RougeTest_rouge(rl_baseline_ref, rl_baseline_hyp, rouge_metric,
