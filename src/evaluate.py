@@ -5,8 +5,7 @@ import os
 import numpy as np
 import torch
 
-import dataLoader
-from src import helper
+from src import helper, dataLoader
 from src.helper import tokens_to_sentences
 from src.reinforce import return_summary_index
 from src.rougefonc import from_summary_index_generate_hyp_ref, RougeTest_pyrouge, RougeTest_rouge
