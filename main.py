@@ -9,12 +9,12 @@ import logging
 import torch
 from torch.autograd import Variable
 
-import evaluate
 import model
-from dataLoader import *
-from helper import Config, tokens_to_sentences, prepare_data
-from reinforce import ReinforceReward
-from tools import bool_parse
+from src import evaluate
+from src.dataLoader import *
+from src.helper import Config, tokens_to_sentences, prepare_data
+from src.reinforce import ReinforceReward
+from src.tools import bool_parse
 
 np.set_printoptions(precision=4, suppress=True)
 
@@ -176,7 +176,7 @@ def extractive_training(args, vocab):
                           ' reward: ' + str(np.mean(reward_list)))
                     reward_list = []
 
-                if (step_in_epoch) % 10000 == 0 and step_in_epoch != 0:
+                if (step_in_epoch) % 100 == 0 and step_in_epoch != 0:
                     print("doing evaluation")
                     extract_net.eval()
                     eval_reward, lead3_reward = evaluate.ext_model_eval(extract_net, vocab, args, "val")

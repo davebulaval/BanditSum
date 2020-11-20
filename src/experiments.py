@@ -3,9 +3,8 @@ import pickle as pkl
 import numpy as np
 from nltk.corpus import stopwords
 
-import dataLoader
-import rougefonc
-from helper import tokens_to_sentences
+from src import dataLoader, rougefonc
+from src.helper import tokens_to_sentences
 
 
 ###### greedily creating the label

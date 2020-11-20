@@ -6,7 +6,7 @@ import numpy as np
 import torch
 from torch.autograd import Variable
 
-from rougefonc import from_summary_index_compute_rouge
+from src.rougefonc import from_summary_index_compute_rouge
 
 method = 'herke'
 

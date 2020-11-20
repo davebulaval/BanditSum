@@ -1,17 +1,15 @@
 from __future__ import print_function
 
-import os
 import argparse
 import time
 
 import numpy as np
 import torch
 
-import dataLoader
-import helper
-from helper import tokens_to_sentences
-from reinforce import return_summary_index
-from rougefonc import from_summary_index_generate_hyp_ref, RougeTest_pyrouge, RougeTest_rouge
+from src import dataLoader, helper
+from src.helper import tokens_to_sentences
+from src.reinforce import return_summary_index
+from src.rougefonc import from_summary_index_generate_hyp_ref, RougeTest_pyrouge, RougeTest_rouge
 
 np.set_printoptions(precision=4, suppress=True)
 
@@ -32,9 +30,9 @@ def reinforce_loss(probs, doc, id=0,
     lead3_hyp, lead3_ref = from_summary_index_generate_hyp_ref(doc, range(max_num_of_sents))
     if std_rouge:
         rl_baseline_reward = RougeTest_pyrouge(rl_baseline_ref, rl_baseline_hyp, id=id, rouge_metric=rouge_metric,
-                                               compute_score=compute_score, path=os.path.join('./result/rl'))
+                                               compute_score=compute_score, path=os.path.join('../result/rl'))
         lead3_reward = RougeTest_pyrouge(lead3_ref, lead3_hyp, id=id, rouge_metric=rouge_metric,
-                                         compute_score=compute_score, path=os.path.join('./result/lead'))
+                                         compute_score=compute_score, path=os.path.join('../result/lead'))
     else:
         try:
             rl_baseline_reward = RougeTest_rouge(rl_baseline_ref, rl_baseline_hyp, rouge_metric,
@@ -109,7 +107,7 @@ def ext_model_eval(model, vocab, args, eval_data="test"):
 
 
 if __name__ == '__main__':
-    from dataLoader import *
+    from src.dataLoader import *
 
     torch.manual_seed(233)
     parser = argparse.ArgumentParser()

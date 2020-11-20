@@ -72,32 +72,24 @@
 │     ├── dailymail_wayback_training_urls.txt
 │     ├── dailymail_wayback_validation_urls.txt
 │     └── README.md
-├── dataLoader.py
-├── evaluate.py
-├── experiments.py
-├── helper.py
+├── src
+│ ├── dataLoader.py
+│ ├── evaluate.py
+│ ├── experiments.py
+│ ├── helper.py
+│ ├── reinforce.py
+│ └── rougefonc.py
 ├── log
 ├── main.py
 ├── model
-│ └── placeholder
 ├── model.py
 ├── nltk_download.py
 ├── pickle_data.py
 ├── pickle_glove.py
 ├── pickle_vocab.py
-├── __pycache__
-│ ├── dataLoader.cpython-37.pyc
-│ ├── dataLoader.cpython-38.pyc
-│ ├── evaluate.cpython-38.pyc
-│ ├── helper.cpython-38.pyc
-│ ├── model.cpython-38.pyc
-│ ├── reinforce.cpython-38.pyc
-│ └── rougefonc.cpython-38.pyc
 ├── README.md
-├── reinforce.py
 ├── requirements.txt
 ├── result
 │ ├── lead
 │ └── rl
-├── rougefonc.py
 └── tree.md

@@ -1,6 +1,6 @@
 import pickle
 
-from dataLoader import Document, Dataset, read_text_file, get_url_hashes, fix_missing_period
+from src.dataLoader import Document, Dataset, read_text_file, get_url_hashes, fix_missing_period
 
 
 def get_art_abs(story_file):
