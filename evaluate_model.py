@@ -1,4 +1,5 @@
 import argparse
+import logging
 import pickle
 import time
 
@@ -7,6 +8,9 @@ from src.evaluate import ext_model_eval
 from src.tools import bool_parse
 
 if __name__ == '__main__':
+    # kill the ROUGE155 logger
+    logging.getLogger('global').disabled = True
+
     torch.manual_seed(233)
     parser = argparse.ArgumentParser()
 

@@ -11,7 +11,6 @@ import numpy as np
 import torch
 from torch.autograd import Variable
 
-import model
 from src import evaluate
 from src.dataLoader import PickleReader, BatchDataLoader
 from src.helper import Config, tokens_to_sentences, prepare_data
