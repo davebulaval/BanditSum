@@ -15,6 +15,7 @@ import model
 from src import evaluate
 from src.dataLoader import PickleReader, BatchDataLoader
 from src.helper import Config, tokens_to_sentences, prepare_data
+from src.model import SimpleRNN, SimpleRuNNer
 from src.reinforce import ReinforceReward
 from src.tools import bool_parse
 
@@ -86,20 +87,10 @@ def extractive_training(args, vocab):
 
     print('init extractive model')
 
-    if args.ext_model == "lstm_summarunner":
-        extract_net = model.SummaRuNNer(config)
-    elif args.ext_model == "gru_summarunner":
-        extract_net = model.GruRuNNer(config)
-    elif args.ext_model == "bag_of_words":
-        extract_net = model.SimpleRuNNer(config)
+    if args.ext_model == "bag_of_words":
+        extract_net = SimpleRuNNer(config)
     elif args.ext_model == "simpleRNN":
-        extract_net = model.SimpleRNN(config)
-    elif args.ext_model == "RNES":
-        extract_net = model.RNES(config)
-    elif args.ext_model == "Refresh":
-        extract_net = model.Refresh(config)
-    elif args.ext_model == "simpleCONV":
-        extract_net = model.simpleCONV(config)
+        extract_net = SimpleRNN(config)
     else:
         print("this is no model to load")
 
