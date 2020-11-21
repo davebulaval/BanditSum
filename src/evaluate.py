@@ -5,8 +5,8 @@ import os
 import numpy as np
 import torch
 
-import dataLoader
 from src import helper
+from src.dataLoader import PickleReader, BatchDataLoader
 from src.helper import tokens_to_sentences
 from src.reinforce import return_summary_index
 from src.rougefonc import from_summary_index_generate_hyp_ref, RougeTest_pyrouge, RougeTest_rouge
@@ -53,13 +53,13 @@ def ext_model_eval(model, vocab, args, eval_data="test"):
 
     model.eval()
 
-    data_loader = dataLoader.PickleReader(args.data_dir)
+    data_loader = PickleReader(args.data_dir)
     eval_rewards, lead3_rewards = [], []
     data_iter = data_loader.chunked_data_reader(eval_data)
     print("doing model evaluation on %s" % eval_data)
 
     for phase, dataset in enumerate(data_iter):
-        for step, docs in enumerate(dataLoader.BatchDataLoader(dataset, shuffle=False)):
+        for step, docs in enumerate(BatchDataLoader(dataset, shuffle=False)):
             print("Done %2d chunck, %4d/%4d doc\r" % (phase + 1, step + 1, len(dataset)), end='')
 
             doc = docs[0]
@@ -95,7 +95,16 @@ def ext_model_eval(model, vocab, args, eval_data="test"):
                                                  compute_score=compute_score)
 
             if compute_score:
+                if reward == 0:
+                    reward = [0] * 9
+                elif isinstance(reward, tuple):
+                    reward = list(reward)
                 eval_rewards.append(reward)
+
+                if lead3_r == 0:
+                    lead3_r = [0] * 9
+                elif isinstance(lead3_r, tuple):
+                    lead3_r = list(lead3_r)
                 lead3_rewards.append(lead3_r)
 
     avg_eval_r = np.mean(eval_rewards, axis=0)

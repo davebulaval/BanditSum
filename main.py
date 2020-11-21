@@ -5,13 +5,15 @@ from __future__ import print_function
 
 import argparse
 import logging
+import pickle
 
+import numpy as np
 import torch
 from torch.autograd import Variable
 
 import model
 from src import evaluate
-from dataLoader import *
+from src.dataLoader import PickleReader, BatchDataLoader
 from src.helper import Config, tokens_to_sentences, prepare_data
 from src.reinforce import ReinforceReward
 from src.tools import bool_parse
