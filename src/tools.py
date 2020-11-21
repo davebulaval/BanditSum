@@ -1,7 +1,7 @@
 import argparse
 
 
-def bool_parse(arg):import src.dataLoader
+def bool_parse(arg):
     if arg.lower() in ("true", "t", "yes", "y", "1"):
         return True
     elif arg.lower() in ("false", "f", "no", "n", "0"):
