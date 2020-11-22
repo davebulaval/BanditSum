@@ -168,7 +168,7 @@ def extractive_training(args, vocab):
                           ' reward: ' + str(np.mean(reward_list)))
                     reward_list = []
 
-                if (step_in_epoch) % 100 == 0 and step_in_epoch != 0:
+                if (step_in_epoch) % 10000 == 0 and step_in_epoch != 0:
                     print("doing evaluation")
                     extract_net.eval()
                     eval_reward, lead3_reward = evaluate.ext_model_eval(extract_net, vocab, args, "val")
