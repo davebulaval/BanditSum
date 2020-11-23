@@ -88,16 +88,7 @@ def ext_model_eval(model, vocab, args, eval_data="test"):
                                                  compute_score=compute_score)
 
             if compute_score:
-                if reward == 0:
-                    reward = [0] * 9
-                elif isinstance(reward, tuple):
-                    reward = list(reward)
                 eval_rewards.append(reward)
-
-                if lead3_r == 0:
-                    lead3_r = [0] * 9
-                elif isinstance(lead3_r, tuple):
-                    lead3_r = list(lead3_r)
                 lead3_rewards.append(lead3_r)
 
     avg_eval_r = np.mean(eval_rewards, axis=0)
