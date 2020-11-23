@@ -64,15 +64,12 @@ def eval_greedy_labelling(dataset_with_labels):
     # evaluate
     rouge_list = []
     for data_i in dataset_with_labels:
-        try:
-            ref = data_i[1]
-            d = zip(data_i[0], data_i[2])  # choose ext_summary
-            hyp = [s[0] for s in d if s[1] == 1]
-            rouge_s = rougefonc.RougeTest_rouge(ref, hyp)
-            rouge_list.append(rouge_s)
-            # print("one example", rouge_s)
-        except:
-            pass
+        ref = data_i[1]
+        d = zip(data_i[0], data_i[2])  # choose ext_summary
+        hyp = [s[0] for s in d if s[1] == 1]
+        rouge_s = rougefonc.RougeTest_rouge(ref, hyp)
+        rouge_list.append(rouge_s)
+
     avg_rouge = np.mean(rouge_list, axis=0)
     print("greedy_labeled_rouge", avg_rouge)
     return avg_rouge

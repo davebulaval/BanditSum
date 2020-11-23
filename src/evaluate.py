@@ -34,16 +34,9 @@ def reinforce_loss(probs, doc, id=0,
         lead3_reward = RougeTest_pyrouge(lead3_ref, lead3_hyp, id=id, rouge_metric=rouge_metric,
                                          compute_score=compute_score, path=os.path.join('./result/lead'))
     else:
-        try:
-            rl_baseline_reward = RougeTest_rouge(rl_baseline_ref, rl_baseline_hyp, rouge_metric,
-                                                 max_num_of_bytes=max_num_of_bytes)
-            lead3_reward = RougeTest_rouge(lead3_ref, lead3_hyp, rouge_metric, max_num_of_bytes=max_num_of_bytes)
-        except AssertionError as e:  # doest not work when len of doc.sum and _hyp are different.
-            rl_baseline_reward = 0
-            lead3_reward = 0
-        except ValueError as e:  # cases where a predicted document is only a "." so the cutting make it an empty doc
-            rl_baseline_reward = 0
-            lead3_reward = 0
+        rl_baseline_reward = RougeTest_rouge(rl_baseline_ref, rl_baseline_hyp, rouge_metric,
+                                             max_num_of_bytes=max_num_of_bytes)
+        lead3_reward = RougeTest_rouge(lead3_ref, lead3_hyp, rouge_metric, max_num_of_bytes=max_num_of_bytes)
 
     return rl_baseline_reward, lead3_reward
 

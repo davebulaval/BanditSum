@@ -10,7 +10,9 @@ rouge = Rouge()
 
 def RougeTest_rouge(ref, hyp, rouge_metric="all", max_num_of_bytes=-1):
     ref = [_.lower() for _ in ref]
+    ref = [" ".join(ref)]  # join for managing the cases where we have different number of sentence.
     hyp = [_.lower().replace(".", " .") for _ in hyp]
+    hyp = [" ".join(hyp)]
 
     if max_num_of_bytes > 0:
         ref = cutwords(ref)
