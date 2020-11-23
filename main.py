@@ -17,6 +17,7 @@ from src.helper import Config, tokens_to_sentences, prepare_data
 from src.model import SimpleRNN, SimpleRuNNer
 from src.reinforce import ReinforceReward
 from src.tools import bool_parse
+from timer.timer import Timer
 
 np.set_printoptions(precision=4, suppress=True)
 
@@ -235,4 +236,6 @@ def main():
 
 
 if __name__ == '__main__':
-    main()
+    timer = Timer()
+    with timer:
+        main()
