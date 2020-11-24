@@ -45,7 +45,7 @@ def extractive_training(args, vocab):
                            str(args.ext_model),
                            str(args.rouge_metric), str(args.std_rouge),
                            str(args.rl_baseline_method), "oracle_l", str(args.oracle_length),
-                           "bsz", str(args.batch_size), "rl_loss", str(args.rl_loss_method),
+                           "bsz", str(args.sample_size), "rl_loss", str(args.rl_loss_method),
                            "train_example_quota", str(args.train_example_quota),
                            "length_limit", str(args.length_limit),
                            "hidden", str(args.hidden),
@@ -60,7 +60,7 @@ def extractive_training(args, vocab):
                          str(args.ext_model),
                          str(args.rouge_metric), str(args.std_rouge),
                          str(args.rl_baseline_method), "oracle_l", str(args.oracle_length),
-                         "bsz", str(args.batch_size), "rl_loss", str(args.rl_loss_method),
+                         "bsz", str(args.sample_size), "rl_loss", str(args.rl_loss_method),
                          "train_example_quota", str(args.train_example_quota),
                          "length_limit", str(args.length_limit),
                          "hidden", str(args.hidden),
@@ -82,7 +82,7 @@ def extractive_training(args, vocab):
         print("fine_tune model with std_rouge, args.std_rouge changed to %s" % args.std_rouge)
 
     reinforce = ReinforceReward(std_rouge=args.std_rouge, rouge_metric=args.rouge_metric,
-                                b=args.batch_size, rl_baseline_method=args.rl_baseline_method,
+                                sample_size=args.sample_size, rl_baseline_method=args.rl_baseline_method,
                                 loss_method=1)
 
     print('init extractive model')
@@ -118,7 +118,7 @@ def extractive_training(args, vocab):
         train_iter = data_loader.chunked_data_reader("train", data_quota=args.train_example_quota)
         step_in_epoch = 0
         for dataset in train_iter:
-            for step, docs in enumerate(BatchDataLoader(dataset, shuffle=True, batch_size=args.batch_size)):
+            for step, docs in enumerate(BatchDataLoader(dataset, shuffle=True)):
                 try:
                     extract_net.train()
                     # if True:
@@ -210,7 +210,7 @@ def main():
     parser.add_argument('--rl_loss_method', type=int, default=2,
                         help='1 for computing 1-log on positive advantages,'
                              '0 for not computing 1-log on all advantages')
-    parser.add_argument('--batch_size', type=int, default=20)
+    parser.add_argument('--sample_size', type=int, default=20)
     parser.add_argument('--fine_tune', action='store_true', help='fine tune with std rouge')
     parser.add_argument('--train_example_quota', type=int, default=-1,
                         help='how many train example to train on: -1 means full train data')

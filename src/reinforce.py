@@ -79,7 +79,7 @@ def return_summary_index(probs_numpy, probs_torch, sample_method="greedy", max_n
 
 
 class ReinforceReward:
-    def __init__(self, std_rouge=False, rouge_metric="all", b=5, rl_baseline_method="greedy", loss_method=1):
+    def __init__(self, std_rouge=False, rouge_metric="all", sample_size=5, rl_baseline_method="greedy", loss_method=1):
         """
         :param std_rouge:
         :param rouge_metric:
@@ -97,7 +97,7 @@ class ReinforceReward:
         self.std_rouge = std_rouge
         self.rouge_metric = rouge_metric
         self.rl_baseline_method = rl_baseline_method
-        self.b = b  # batch_size
+        self.sample_size = sample_size
         self.loss_method = loss_method
 
     def train(self, probs, doc, max_num_of_sents=3, max_num_of_bytes=-1, prt=False):
@@ -106,7 +106,7 @@ class ReinforceReward:
         """
         self.update_data_instance(probs, doc, max_num_of_sents)
         self.train_examples_seen += 1
-        batch_index_and_loss_lists = self.sample_batch(self.b)
+        batch_index_and_loss_lists = self.sample_batch(self.sample_size)
         batch_rewards = [
             self.generate_reward(idx_list[0], max_num_of_bytes)
             for idx_list in batch_index_and_loss_lists
