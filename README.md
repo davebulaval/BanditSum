@@ -78,8 +78,8 @@ individual results in the next table. We can see that we obtain similar results 
 |   3  |   Lead3   |    40.7    |    16.9    |    33.9    |
 |   4  | BanditSum |    42.4    |    18.4    |    36.2    |
 |   4  |   Lead3   |    40.7    |    16.9    |    33.9    |
-|   5  | BanditSum |    39.5    |    17.8    |    38.6    |
-|   5  |   Lead3   |    38.3    |    16.7    |    37.0    |
+|   5  | BanditSum |    42.4    |    18.4    |    36.2    |
+|   4  |   Lead3   |    40.7    |    16.9    |    33.9    |
 
 In the next table, we report the mean of the five previous results plus a standard deviation over and under the results and the
 reference results.
@@ -88,8 +88,8 @@ reference results.
 |:----------------:|:---------------:|:---------------:|:---------------:|
 |     BanditSum    |       41.5      |       18.7      |       37.6      |
 |       Lead3      |        40       |       17.5      |       36.2      |
-| BanditSum (ours) |  41.7 $\pm$ 1.3 | 18.2 $\pm$ 0.3 | 36.6 $\pm$ 1.1 |
-|   Lead3 (ours)   | 40.2 $\pm$ 1.1 | 16.9 $\pm$ 0.1 | 34.5 $\pm$ 1.4 |
+| BanditSum (ours) |  42.3 $\pm$ 0.1 | 18.3 $\pm$ 0.1  | 36.1 $\pm$ 0.1  |
+|   Lead3 (ours)   | 40.7 $\pm$ 0.0  | 16.9 $\pm$ 0.0  | 33.9 $\pm$ 0.0  |
 
 
 ## Error Handling
