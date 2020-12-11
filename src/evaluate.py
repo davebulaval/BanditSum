@@ -87,9 +87,8 @@ def ext_model_eval(model, vocab, args, eval_data="test"):
                                                  std_rouge=args.std_rouge, rouge_metric=args.rouge_metric,
                                                  compute_score=compute_score)
 
-            if compute_score:
-                eval_rewards.append(reward)
-                lead3_rewards.append(lead3_r)
+            eval_rewards.append(reward)
+            lead3_rewards.append(lead3_r)
 
     avg_eval_r = np.mean(eval_rewards, axis=0)
     avg_lead3_r = np.mean(lead3_rewards, axis=0)
