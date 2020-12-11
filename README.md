@@ -1,4 +1,5 @@
 # A Python3 BanditSum Implementation
+> Also faster since we use Python Rouge computation (see Compute Rouge section for more details)
 
 This repository contains the modified code for the EMNLP 2018
 paper "[BanditSum: Extractive Summarization as a Contextual Bandit](https://arxiv.org/abs/1809.09672)" to work in Python3. For questions about the article you can contact one of the [author](yue.dong2@mail.mcgill.ca).
