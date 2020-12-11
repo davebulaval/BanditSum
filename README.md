@@ -68,7 +68,7 @@ would recommand this number.*
 
 The authors used Rouge155 implemented in Pearl for most of the computation of the Rouge scores, this implementation (and
 the way they call the framework) take
-**a lot** of time. We have achieved similar results (over five different runs using each time a different seed) using
+**a lot** of time. We have achieved similar results (see section Our Results for more details) using
 the [Python rouge](https://pypi.org/project/rouge/)
 implementation. Using this version allows us to achieve similar results in about half the time.
 
@@ -94,4 +94,34 @@ rm WordNet-2.0.exc.db
 ./WordNet-2.0-Exceptions/buildExeptionDB.pl ./WordNet-2.0-Exceptions ./smart_common_words.txt ./WordNet-2.0.exc.db
 ```
 
+# Our Results
 
+We were able to reproduce the article results using the Python Rouge implementation instead of the Pearl ROUGE155 one.
+We trained the model for two epochs (same as the authors), using the same hyperparameters (learning rate, dropout,
+embeddings, sample size). We could not batch due to memory constraints due to one document containing 156 sentences.
+
+For our experiment, we trained five models using each time a different seed (123, 2, 3, 4 and 5) and report the
+individual results in the next table. We can see that we obtain similar results as the reference article.
+
+| Seed |           | ROUGE-1 (%) | ROUGE-2 (%) | ROUGE-L (%) |
+|:----:|:---------:|:-----------:|:-----------:|:-----------:|
+|  123 | BanditSum |    42.3    |    18.4    |    36.2    |
+|  123 |   Lead3   |    40.7    |    16.9    |    33.9    |
+|   2  | BanditSum |    42.2    |    18.3    |    36.1    |
+|   2  |   Lead3   |    40.7    |    16.9    |    33.9    |
+|   3  | BanditSum |    42.2    |    18.3    |    36.1    |
+|   3  |   Lead3   |    40.7    |    16.9    |    33.9    |
+|   4  | BanditSum |    42.4    |    18.4    |    36.2    |
+|   4  |   Lead3   |    40.7    |    16.9    |    33.9    |
+|   5  | BanditSum |    39.5    |    17.8    |    38.6    |
+|   5  |   Lead3   |    38.3    |    16.7    |    37.0    |
+
+In the next table, we report the mean of the five previous results plus a standard deviation over and under the results and the
+reference results.
+
+|                  |   ROUGE-1 (%)   |   ROUGE-2 (%)   |   ROUGE-L (%)   |
+|:----------------:|:---------------:|:---------------:|:---------------:|
+|     BanditSum    |       41.5      |       18.7      |       37.6      |
+|       Lead3      |        40       |       17.5      |       36.2      |
+| BanditSum (ours) |  41.7 $\pm$ 1.3 | 18.2 $\pm$ 0.3 | 36.6 $\pm$ 1.1 |
+|   Lead3 (ours)   | 40.2 $\pm$ 1.1 | 16.9 $\pm$ 0.1 | 34.5 $\pm$ 1.4 |
