@@ -110,4 +110,4 @@ def from_summary_index_compute_rouge(doc, summary_index, std_rouge=False, rouge_
         score = RougeTest_pyrouge(ref, hyp, rouge_metric=rouge_metric)
     else:
         score = RougeTest_rouge(ref, hyp, rouge_metric=rouge_metric, max_num_of_bytes=max_num_of_bytes)
-    return score
+    return score, (hyp, ref)

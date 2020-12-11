@@ -111,6 +111,8 @@ class ReinforceReward:
             self.generate_reward(idx_list[0], max_num_of_bytes)
             for idx_list in batch_index_and_loss_lists
         ]
+        # but now contains score, (hyp, ref) need to extract it
+        batch_rewards, (hyps, refs) = zip(*batch_rewards)  # maybe something like this will do
 
         rl_baseline_reward = self.compute_baseline(batch_rewards)
         loss = self.generate_batch_loss(batch_index_and_loss_lists, batch_rewards, rl_baseline_reward)
@@ -127,7 +129,7 @@ class ReinforceReward:
             lead_reward = self.generate_reward(lead_index_list, max_num_of_bytes)
             print('Lead3 rewards:', np.array(lead_reward))
 
-        return loss, greedy_reward
+        return loss, greedy_reward, (hyps, refs)  # and return it to the main script to do something with it
 
     def validate(self, probs, doc, max_num_of_sents=3):
         """
@@ -162,11 +164,11 @@ class ReinforceReward:
                                         sample_method=sample_method, max_num_of_sents=self.max_num_of_sents)
 
     def generate_reward(self, summary_index_list, max_num_of_bytes=-1):
-        reward = from_summary_index_compute_rouge(self.doc, summary_index_list,
-                                                  std_rouge=self.std_rouge,
-                                                  rouge_metric=self.rouge_metric,
-                                                  max_num_of_bytes=max_num_of_bytes)
-        return reward
+        reward, (hyp, ref) = from_summary_index_compute_rouge(self.doc, summary_index_list,
+                                                              std_rouge=self.std_rouge,
+                                                              rouge_metric=self.rouge_metric,
+                                                              max_num_of_bytes=max_num_of_bytes)
+        return reward, (hyp, ref)
 
     def generate_summary(self, summary_index_list):
         return [self.doc.content[i] for i in summary_index_list]
