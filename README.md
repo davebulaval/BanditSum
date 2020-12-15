@@ -43,7 +43,7 @@ After that, your repository should look like the content of the `tree.md` file.
 
 ## Run
 
-1. From the repository directory run `pickle_glove.py` to parse and pickle the Glove vectors.
+1. From the repository directory run `python pickle_glove.py` to parse and pickle the Glove vectors.
 2. From the repository directory run `python pickle_data.py` to pickle the data.
 3. From the repository directory run `python main.py` to train the model.
 
